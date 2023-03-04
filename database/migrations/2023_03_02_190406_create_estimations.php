@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('optimistic');
             $table->integer('normal');
             $table->integer('expected');
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

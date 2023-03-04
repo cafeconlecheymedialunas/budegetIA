@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->enum('type',['A','B','C']);
             $table->enum('industry',['A','B','C']);
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

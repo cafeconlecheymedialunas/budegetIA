@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            
            
             $table->string('docs');
             $table->string('risks');
             $table->enum('status',['open','close'])->change();
             
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

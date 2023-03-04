@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('costs', function (Blueprint $table) {
             $table->id();
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

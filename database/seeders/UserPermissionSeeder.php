@@ -6,7 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-$role = Role::create(['name' => 'Administrator']);
+use App\Models\User;
+
 class UserPermissionSeeder extends Seeder
 {
 	/**
@@ -20,75 +21,101 @@ class UserPermissionSeeder extends Seeder
 		$expert = Role::create(["name" => "Expert"]);
       
 
-	    Permission::create(['name' => 'view_teams'])->syncRoles($admin,$manager,$expert);
-		Permission::create(['name' => 'create_teams'])->syncRoles([$admin,$manager]);
-	    Permission::create(['name' => 'destroy_teams'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'update_teams'])->syncRoles([$admin,$manager]);
+	    Permission::create(['name' => 'view_teams']);
+		Permission::create(['name' => 'create_teams']);
+	    Permission::create(['name' => 'destroy_teams']);
+		Permission::create(['name' => 'update_teams']);
 
-		Permission::create(['name' => 'view_costs'])->syncRoles([$admin]);
-		Permission::create(['name' => 'create_costs'])->syncRoles([$admin]);
-		Permission::create(['name' => 'destroy_costs'])->syncRoles([$admin]);
-		Permission::create(['name' => 'update_costs'])->syncRoles([$admin]);
+		Permission::create(['name' => 'view_costs']);
+		Permission::create(['name' => 'create_costs']);
+		Permission::create(['name' => 'destroy_costs']);
+		Permission::create(['name' => 'update_costs']);
 
-		Permission::create(['name' => 'view_clients'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'create_clients'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'destroy_clients'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'update_clients'])->syncRoles([$admin,$manager]);
+		Permission::create(['name' => 'view_clients']);
+		Permission::create(['name' => 'create_clients']);
+		Permission::create(['name' => 'destroy_clients']);
+		Permission::create(['name' => 'update_clients']);
 
-		Permission::create(['name' => 'view_projects'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'create_projects'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'destroy_projects'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'update_projects'])->syncRoles([$admin,$manager]);
+		Permission::create(['name' => 'view_projects']);
+		Permission::create(['name' => 'create_projects']);
+		Permission::create(['name' => 'destroy_projects']);
+		Permission::create(['name' => 'update_projects']);
 
-		Permission::create(['name' => 'view_tasks']->syncRoles([$admin,$manager,$expert]));
-		Permission::create(['name' => 'create_tasks'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'destroy_tasks'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'update_tasks'])->syncRoles([$admin,$manager,$expert]);
+		Permission::create(['name' => 'view_tasks']);
+		Permission::create(['name' => 'create_tasks']);
+		Permission::create(['name' => 'destroy_tasks']);
+		Permission::create(['name' => 'update_tasks']);
 
-		Permission::create(['name' => 'view_estimations'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'create_estimations'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'destroy_estimations'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'update_estimations'])->syncRoles([$admin,$manager,$expert]);
+		Permission::create(['name' => 'view_estimations']);
+		Permission::create(['name' => 'create_estimations']);
+		Permission::create(['name' => 'destroy_estimations']);
+		Permission::create(['name' => 'update_estimations']);
 
-		Permission::create(['name' => 'view_comments'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'create_comments'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'destroy_comments'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'update_comments'])->syncRoles([$admin,$manager,$expert]);
+		Permission::create(['name' => 'view_comments']);
+		Permission::create(['name' => 'create_comments']);
+		Permission::create(['name' => 'destroy_comments']);
+		Permission::create(['name' => 'update_comments']);
 
-		Permission::create(['name' => 'view_budgets'])->syncRoles([$admin,$manager,$expert]);
-		Permission::create(['name' => 'create_budgets'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'destroy_budgets'])->syncRoles([$admin,$manager]);
-		Permission::create(['name' => 'update_budgets'])->syncRoles([$admin,$manager]);
-
-		$admin = Role::create(["name" => "Admin"]);
-		$manager = Role::create(["name" => "Manager"]);
-		$admin = Role::create(["name" => "Expert"]);
-
-        $user_admin = User::create([
-            'name' => 'demo',
-            'email' => 'demo@demo.net',
-            'password' => "123456demo"
-        ]);
-       
-        $user_admin->assignRole('Admin');
+		Permission::create(['name' => 'view_budgets']);
+		Permission::create(['name' => 'create_budgets']);
+		Permission::create(['name' => 'destroy_budgets']);
+		Permission::create(['name' => 'update_budgets']);
 
 
-        $user_expert = User::create([
-            'name' => 'demo',
-            'email' => 'demo@demo.net',
-            'password' => "123456demo"
-        ]);
-       
-        $user_expert->assignRole('Expert');
+        $admin->syncPermissions(
+            [
+                'view_teams', 'create_teams','update_teams','destroy_teams',
+                'view_comments', 'create_comments','update_comments','destroy_comments',
+                'view_clients', 'create_clients','update_clients','destroy_clients',
+                'view_projects', 'create_projects','update_projects','destroy_projects',
+                'view_tasks', 'create_tasks','update_tasks','destroy_tasks',
+                'view_costs', 'create_costs','update_costs','destroy_costs',
+                'view_estimations', 'create_estimations','update_estimations','destroy_estimations',
+                'view_budgets', 'create_budgets','update_budgets','destroy_budgets'
+            ]
+        );
 
-        $user_manager = User::create([
-            'name' => 'demo',
-            'email' => 'demo@demo.net',
-            'password' => "123456demo"
-        ]);
-       
-        $user_manager->assignRole('Manager');
-		]);
+        $manager->syncPermissions(
+            [
+                'view_teams', 'create_teams','update_teams','destroy_teams',
+                'view_comments', 'create_comments','update_comments','destroy_comments',
+                'view_clients', 'create_clients','update_clients','destroy_clients',
+                'view_projects', 'create_projects','update_projects','destroy_projects',
+                'view_tasks', 'create_tasks','update_tasks','destroy_tasks',
+                'view_estimations', 'create_estimations','update_estimations','destroy_estimations',
+                'view_budgets', 'create_budgets','update_budgets','destroy_budgets'
+            ]
+        );
+
+        $expert->syncPermissions(
+            [
+                'view_teams',
+                'view_comments', 'create_comments','update_comments','destroy_comments',
+                'view_clients',
+                'view_projects',
+                'view_tasks', 'create_tasks','update_tasks','destroy_tasks',
+                'view_estimations', 'create_estimations','update_estimations','destroy_estimations',
+                'view_budgets', 'create_budgets','update_budgets','destroy_budgets'
+            ]
+        );
+        User::factory(2)->create()->each(
+            function($user){
+                $user->assignRole("Admin");
+            }
+        );
+
+            User::factory(2)->create()->each(
+            function($user){
+                $user->assignRole("Expert");
+            }
+        );
+            User::factory(2)->create()->each(
+            function($user){
+                $user->assignRole("Manager");
+            }
+        );
+    
+
 		
 	}
 }

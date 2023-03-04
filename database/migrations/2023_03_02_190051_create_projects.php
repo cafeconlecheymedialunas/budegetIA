@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string('requirements');
             $table->string('references');
             $table->string('archives');
-             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+          
             $table->timestamps();
         });
     }
