@@ -6,6 +6,7 @@ use App\Http\Requests\StoreClientRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller
 {
@@ -30,8 +31,12 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-       Client::create($request->validated());
-       return to_route("clients.index");
+        Client::create(
+            $request->validated()
+        );
+
+        return Redirect::route('clients.index');
+       
     }
 
     /**
@@ -47,22 +52,28 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return Inertia::render("Client/ClientUpdate",["client" => $client]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreClientRequest $request, Client $client)
     {
-        //
+        $client->update($request->validated());
+
+        return Redirect::route('clients.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        return Redirect::route('clients.index');
     }
 }

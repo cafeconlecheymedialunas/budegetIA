@@ -1,5 +1,5 @@
 
-import { useForm } from '@inertiajs/react';
+import { useForm,Link,router } from '@inertiajs/react';
 import {useState } from 'react';
 
 
@@ -14,6 +14,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import Main from '@/Layouts/Main';
 
+
 export default function ClientCreate(props) {
 
 
@@ -23,7 +24,7 @@ export default function ClientCreate(props) {
         name: "",
         industry: "",
         type: "",
-        description: "",
+        description: ""
     })
 
 
@@ -31,18 +32,14 @@ export default function ClientCreate(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route('clients.store'), {
-            preserveScroll: true,
-            //onSuccess: () => closeModal(),
-
-            //onFinish: () => reset(),
-        });
+        post(route("clients.store"));
     };
 
 
     return (
-        <Main title="Clients" createUrl="/clients/create" buttonTitle="Create Client">
-            <form onSubmit={handleSubmit} className='p-4'>
+        <Main title="Create Client" createUrl="/clients" buttonTitle="Back">
+            <form onSubmit={handleSubmit} className='p-y4'>
+             
                 <div className='mt-3'>
                     <InputLabel htmlFor='name' value='Name' />
 
@@ -225,8 +222,7 @@ export default function ClientCreate(props) {
                 </div>
                 <div className='mt-3 flex justify-end'>
 
-                    <SecondaryButton>Cancel</SecondaryButton>
-
+                    <Link as="button" className='inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150' href="/clients">Cancel</Link>
                     <PrimaryButton  disabled={processing} className='ml-3'>
                         Save
                     </PrimaryButton>
