@@ -11,13 +11,8 @@ class Project extends Model
     
     protected $fillable = [ 'name',"docs","requirements","references","archives","project_id"];
 
-   
+    public function team()
+    {
+        return $this->hasOne("App\Models\Team");
+    }
 }
-/*$table->string('docs');
-$table->string('requirements');
-$table->string('references');
-$table->string('archives');
-
-$table->unsignedBigInteger("project_id");
-
-$table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade')*/

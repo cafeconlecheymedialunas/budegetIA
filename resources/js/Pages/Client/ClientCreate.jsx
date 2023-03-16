@@ -30,7 +30,7 @@ export default function ClientCreate() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         post(route("clients.store"));
     };
 
@@ -61,7 +61,6 @@ export default function ClientCreate() {
 
                     <SelectInput
                         id='industry'
-                        type='industry'
                         name='industry'
                         value={data.industry}
                         onChange={(e) => setData('industry', e.target.value)}

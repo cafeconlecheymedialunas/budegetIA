@@ -15,4 +15,9 @@ class Team extends Model
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
+
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project');
+    }
 }

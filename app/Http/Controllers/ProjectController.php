@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Project;
-
+use App\Models\Team;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
@@ -24,7 +24,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return Inertia::render("Project/ProjectCreate");
+        $teams = Team::all()->pluck('name')->toArray();
+        return Inertia::render("Project/ProjectCreate",compact("teams"));
     }
 
     /**
@@ -32,10 +33,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        Project::create(
-            $request->validated()
-        );
-      
+       
+        $team = Team::findOrFail($request->team_id);
+        $projects = new Project();
+        $projects->name = $request->name;
+        $projects->docs = $request->docs;
+        $projects->requirements = $request->requirements;
+        $projects->references = $request->references;
+        $projects->archives = $request->archives;
+       
+        $projects->team()->save( $team);
+
         return Redirect::route('projects.index');
        
     }
@@ -54,7 +62,7 @@ class ProjectController extends Controller
     public function edit(string $id)
     {
         $project = Project::findOrFail($id);
-        return Inertia::render("Project/ProjectUpdate",["project" => $project]);
+        return Inertia::render("Project/ProjectUpdate",compact("project"));
     }
 
     /**

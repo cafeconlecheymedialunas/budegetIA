@@ -63,7 +63,7 @@ export default function ClientUpdate({ client }) {
 
                     <SelectInput
                         id='industry'
-                        type='industry'
+                        
                         name='industry'
                         value={data.industry}
                         onChange={(e) => setData('industry', e.target.value)}

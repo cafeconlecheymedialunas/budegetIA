@@ -9,13 +9,13 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import TextArea from "@/Components/TextArea";
 import PrimaryButton from '@/Components/PrimaryButton';
+import SelectInput from '@/Components/SelectInput';
 
 
 
+export default function TeamCreate({teams}) {
 
-export default function TeamCreate(props) {
-
-
+    console.log(teams)
 
 
     const { data, setData, post, processing, errors } = useForm({
@@ -118,6 +118,22 @@ export default function TeamCreate(props) {
                     />
 
                     <InputError message={errors.archives} className='mt-1' />
+                </div>
+                <div className='mt-3'>
+                    <InputLabel htmlFor='team_id' value='Team' />
+
+                    <SelectInput
+                        id='team_id'
+                        
+                        name='team_id'
+                        value={data.team_id}
+                        onChange={(e) => setData('team_id', e.target.value)}
+                        className='form-control mt-1 block w-100'
+                        options={teams}
+                        placeholder='Team'
+                    />
+
+                    <InputError message={errors.team_id} className='mt-1' />
                 </div>
                 <div className='mt-3 flex justify-end'>
 

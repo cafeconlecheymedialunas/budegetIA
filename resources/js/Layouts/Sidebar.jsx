@@ -16,7 +16,12 @@ export default function Sidebar(props) {
                     </li>
                     <li className="sidebar-item">
                         <Link className="sidebar-link" href="teams">
-                            <i className="align-middle" data-feather="user" /> <span className="align-middle">Teams</span>
+                            <i className="align-middle" /> <span className="align-middle">Teams</span>
+                        </Link>
+                    </li>
+                    <li className="sidebar-item">
+                        <Link className="sidebar-link" href="projects">
+                            <i className="align-middle"/> <span className="align-middle">Projects</span>
                         </Link>
                     </li>
                    

@@ -13,13 +13,13 @@ import PrimaryButton from '@/Components/PrimaryButton';
 
 
 
-export default function TeamUpdate({ team }) {
+export default function ProjectUpdate({ project }) {
    
 
 
     const { data, setData, put, errors, } = useForm({
-        name: team.name,
-        description: team.description,
+        name: project.name,
+        description: project.description,
     });
 
 
@@ -27,7 +27,7 @@ export default function TeamUpdate({ team }) {
         e.preventDefault();
        
        
-        put(route("teams.update", team.id));
+        put(route("projects.update", project.id));
     };
 
 
@@ -36,7 +36,7 @@ export default function TeamUpdate({ team }) {
 
     return (
 
-        <Main title="Update Team" createUrl="/teams" buttonTitle="Back">
+        <Main title="Update Project" createUrl="/projects" buttonTitle="Back">
 
             <form onSubmit={handleSubmit} className='p-y4'>
                 <div className='mt-3'>
@@ -71,7 +71,7 @@ export default function TeamUpdate({ team }) {
                     <InputError message={errors.description} className='mt-1' />
                 </div>
                 <div className='mt-3 flex justify-end'>
-                    <Link className='inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150' href="/teams">Cancel</Link>
+                    <Link className='inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150' href="/projects">Cancel</Link>
 
 
                     <PrimaryButton className='ml-3'>

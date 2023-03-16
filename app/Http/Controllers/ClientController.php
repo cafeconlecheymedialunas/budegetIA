@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
 use App\Models\Client;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,7 +14,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return Inertia::render("Client/ClientList",["clients" => Client::all("id","name","type","industry")]);
+        return Inertia::render("Client/ClientList",["data" => Client::all("id","name","type","industry")]);
     }
 
     /**
@@ -53,7 +52,7 @@ class ClientController extends Controller
     public function edit(string $id)
     {
         $client = Client::findOrFail($id);
-        return Inertia::render("Client/ClientUpdate",["client" => $client]);
+        return Inertia::render("Client/ClientUpdate",compact("client"));
     }
 
     /**

@@ -14,8 +14,16 @@ export default function SelectInput({ className = '', options = [], ...props }) 
                 }
               >
                 <option value="">Choose a option</option>
-                {options.map(item =>
-                    <option key={item} >{item}</option>
+                {options.map((item,key) => {
+
+                    if(!Array.isArray(item) || item["value"] == ""){
+                        return <option value={item} key={key} >{item}</option>
+                        
+                    }
+                    return  <option value={item["key"]} key={item["key"]} >{item["value"]}</option>
+
+                }
+                    
                 )}
 
             </select>

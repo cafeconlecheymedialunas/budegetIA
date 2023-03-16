@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTeamRequest;
 use App\Models\Team;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
@@ -53,7 +52,7 @@ class TeamController extends Controller
     public function edit(string $id)
     {
         $team = Team::findOrFail($id);
-        return Inertia::render("Team/TeamUpdate",["team" => $team]);
+        return Inertia::render("Team/TeamUpdate",compact("team"));
     }
 
     /**
