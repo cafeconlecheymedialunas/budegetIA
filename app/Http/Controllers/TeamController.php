@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreClientRequest;
-use App\Models\Client;
+use App\Http\Requests\StoreTeamRequest;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
-class ClientController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render("Client/ClientList",["clients" => Client::all("id","name","type","industry")]);
+        return Inertia::render("Team/TeamList",["data" => Team::all("id","name","description")]);
     }
 
     /**
@@ -23,19 +23,19 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return Inertia::render("Client/ClientCreate");
+        return Inertia::render("Team/TeamCreate");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreClientRequest $request)
+    public function store(StoreTeamRequest $request)
     {
-        Client::create(
+        Team::create(
             $request->validated()
         );
 
-        return Redirect::route('clients.index');
+        return Redirect::route('teams.index');
        
     }
 
@@ -52,28 +52,28 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        $client = Client::findOrFail($id);
-        return Inertia::render("Client/ClientUpdate",["client" => $client]);
+        $team = Team::findOrFail($id);
+        return Inertia::render("Team/TeamUpdate",["team" => $team]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreClientRequest $request, Client $client)
+    public function update(StoreTeamRequest $request, Team $team)
     {
-        $client->update($request->validated());
+        $team->update($request->validated());
 
-        return Redirect::route('clients.index');
+        return Redirect::route('teams.index');
     }
     
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(Team $team)
     {
-        $client->delete();
+        $team->delete();
 
-        return Redirect::route('clients.index');
+        return Redirect::route('teams.index');
     }
 }

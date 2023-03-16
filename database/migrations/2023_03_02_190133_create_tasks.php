@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('docs');
             $table->string('risks');
             $table->enum('status',['open','close'])->change();
-            
+         
+            $table->unsignedBigInteger("project_id");
+       
+        $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             
             $table->timestamps();
         });

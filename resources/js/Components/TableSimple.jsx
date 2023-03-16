@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react"
 
-export default function TableSimple({keys,data,table,openModal}) {
+export default function TableSimple({keys,data,table}) {
 
 
     return (
@@ -17,13 +17,28 @@ export default function TableSimple({keys,data,table,openModal}) {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    {data.map((row) => 
+                    {data.map((row) => {
+                       
+                        return (
+
+
                         <tr className="hover:bg-gray-50" key={row.id}>
-
-
-                        <td className="px-6 py-4">{row.name}</td>
-                        <td className="px-6 py-4">{row.type}</td>
-                        <td className="px-6 py-4">{row.industry}</td>
+                        
+                        
+                        {Object.keys(row).map((keyName, i) => {
+                            if(keyName !== "id"){
+                                return (
+                                
+                                    <td className="px-6 py-4">{row[keyName]}</td>
+                                
+                            )}
+                        })}
+                        
+                     
+                            
+                       
+                        
+                        
             
                         <td className="px-6 py-4">
                             <div className="flex justify-end gap-4">
@@ -41,8 +56,9 @@ export default function TableSimple({keys,data,table,openModal}) {
                                 </Link>
                             </div>
                         </td>
-                    </tr>
-                    )}
+                        </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>

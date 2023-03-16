@@ -23,6 +23,9 @@ return new class extends Migration
             $table->integer('normal');
             $table->integer('expected');
            
+            $table->unsignedBigInteger("task_id");
+          
+              $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->timestamps();
         });
     }

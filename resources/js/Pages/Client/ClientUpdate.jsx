@@ -1,23 +1,23 @@
 
 import { useForm ,Link} from '@inertiajs/react';
-import { useRef, useState } from 'react';
 
+
+import Main from '@/Layouts/Main';
 
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
-
 import SelectInput from '@/Components/SelectInput';
 import TextArea from "@/Components/TextArea";
-import Main from '@/Layouts/Main';
-import SecondaryButton from '@/Components/SecondaryButton';
+
+
 import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function ClientUpdate({ client }) {
     console.log(client)
 
 
-    const { data, setData, put, processing, reset, errors, } = useForm({
+    const { data, setData, put, errors, } = useForm({
         name: client.name,
         type: client.type,
         industry: client.industry,

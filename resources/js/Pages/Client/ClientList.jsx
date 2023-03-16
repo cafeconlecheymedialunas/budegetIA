@@ -1,14 +1,6 @@
-import { useState } from 'react';
-
-
-
-import TableSimple from "@/Components/TableSimple";
-
-
 import Main from '@/Layouts/Main';
 
-
-
+import TableSimple from "@/Components/TableSimple";
 
 export default function ClientList({ clients }) {
     return (

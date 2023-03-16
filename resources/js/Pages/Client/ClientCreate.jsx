@@ -1,21 +1,20 @@
 
-import { useForm,Link,router } from '@inertiajs/react';
-import {useState } from 'react';
+import { useForm,Link } from '@inertiajs/react';
 
+
+import Main from '@/Layouts/Main';
 
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
-
-
 import SelectInput from '@/Components/SelectInput';
 import TextArea from "@/Components/TextArea";
 import PrimaryButton from '@/Components/PrimaryButton';
-import SecondaryButton from '@/Components/SecondaryButton';
-import Main from '@/Layouts/Main';
 
 
-export default function ClientCreate(props) {
+
+
+export default function ClientCreate() {
 
 
 

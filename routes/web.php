@@ -6,9 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 
 use Inertia\Inertia;
-use App\Http\Controllers\UserController;
+//use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ProfileController;
+//use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ProjectController;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,8 +38,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource("clients",ClientController::class)->names("clients");
 
-
-
+    Route::resource("teams",TeamController::class)->names("teams");
+    Route::resource("projects",ProjectController::class)->names("projects");
 });
 
 require __DIR__.'/auth.php';

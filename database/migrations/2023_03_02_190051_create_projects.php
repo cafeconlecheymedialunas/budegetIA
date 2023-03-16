@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
             $table->string('docs');
             $table->string('requirements');
             $table->string('references');
             $table->string('archives');
-          
+           
+            $table->unsignedBigInteger("team_id");
+           
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }
